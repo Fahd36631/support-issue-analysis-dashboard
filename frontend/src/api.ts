@@ -1,6 +1,6 @@
 import type { AnalysisState, RegionAnalysis, RegionName } from "./types";
 
-const API_BASE = "http://localhost:4000";
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:4000";
 type UploadRegion = RegionName | "All Regions";
 
 export async function fetchAnalysis(): Promise<AnalysisState> {

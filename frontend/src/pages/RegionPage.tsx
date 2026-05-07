@@ -74,6 +74,7 @@ export default function RegionPage() {
     setError(null);
     setBusy(true);
     try {
+      if (!region || !name) return;
       const normalized = recomputeTotals(region);
       const next = await saveRegion(name, normalized);
       setState(next);
