@@ -8,7 +8,17 @@
     <link rel="stylesheet" crossorigin href="/support-issue-analysis-dashboard/assets/index-Cy4h44Zx.css">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"></div>
+    <script>
+      // GitHub Pages SPA fallback: convert redirected /?/... back to normal path.
+      (function () {
+        var redirect = window.location.search.match(/^\?\/(.*)$/);
+        if (!redirect) return;
+        var decoded = redirect[1].replace(/~and~/g, "&");
+        var newUrl = window.location.origin + window.location.pathname.replace(/\/$/, "") + "/" + decoded;
+        window.history.replaceState(null, "", newUrl);
+      })();
+    </script>
   </body>
 </html>
 
