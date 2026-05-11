@@ -12,7 +12,6 @@ export default function UploadPage() {
   const [selected, setSelected] = useState<Selected[]>([]);
   const [month, setMonth] = useState<string>(String(now.getMonth() + 1));
   const [year, setYear] = useState<string>("all");
-  const [dateOrder, setDateOrder] = useState<"AUTO" | "DMY" | "MDY">("AUTO");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -37,8 +36,7 @@ export default function UploadPage() {
         selected.map((s) => s.region),
         {
           month: month === "all" ? undefined : Number(month),
-          year: year === "all" ? undefined : Number(year),
-          dateOrder
+          year: year === "all" ? undefined : Number(year)
         }
       );
       nav("/preview");
@@ -91,16 +89,6 @@ export default function UploadPage() {
                   </option>
                 );
               })}
-            </select>
-          </div>
-          <div style={{ minWidth: 180 }}>
-            <div className="muted" style={{ marginBottom: 6 }}>
-              Date Format
-            </div>
-            <select value={dateOrder} onChange={(e) => setDateOrder(e.target.value as "AUTO" | "DMY" | "MDY")}>
-              <option value="AUTO">Auto Detect</option>
-              <option value="DMY">DD/MM/YYYY</option>
-              <option value="MDY">MM/DD/YYYY</option>
             </select>
           </div>
         </div>

@@ -12,7 +12,7 @@ export async function fetchAnalysis(): Promise<AnalysisState> {
 export async function uploadChats(
   files: File[],
   regions: UploadRegion[],
-  period?: { month?: number; year?: number; dateOrder?: "AUTO" | "DMY" | "MDY" }
+  period?: { month?: number; year?: number }
 ): Promise<AnalysisState> {
   const fd = new FormData();
   files.forEach((f) => fd.append("files", f));
@@ -22,9 +22,6 @@ export async function uploadChats(
   }
   if (period?.year) {
     fd.append("year", String(period.year));
-  }
-  if (period?.dateOrder) {
-    fd.append("dateOrder", period.dateOrder);
   }
   const r = await fetch(`${API_BASE}/api/upload`, { method: "POST", body: fd });
   if (!r.ok) throw new Error(await r.text());
